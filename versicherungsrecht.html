@@ -1,0 +1,183 @@
+<!DOCTYPE html><html lang="de"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0"><title>Versicherungsrecht | Kanzlei Bianca Jansen</title><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet"><style>
+  :root {
+    --white: #ffffff; --off-white: #f8f7f4; --green: #7a9b3f; --green-dark: #5a7530;
+    --green-light: #a8c46a; --green-pale: #e8f0d8; --charcoal: #1a1a1a;
+    --mid: #4a4a4a; --light: #8a8a8a; --border: #e0e0d8;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body { font-family: "Jost", sans-serif; color: var(--charcoal); background: var(--white); overflow-x: hidden; }
+  ::selection { background: var(--green); color: white; }
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 0 60px; height: 80px;
+    background: rgba(255,255,255,0.97); backdrop-filter: blur(16px);
+    border-bottom: 1px solid rgba(122,155,63,0.12); transition: all 0.3s ease;
+  }
+  nav.scrolled { box-shadow: 0 2px 30px rgba(0,0,0,0.07); }
+  .nav-logo img { height: 56px; width: auto; object-fit: contain; display: block; mix-blend-mode: normal; }
+  .nav-links { display: flex; gap: 28px; list-style: none; }
+  .nav-links a {
+    font-family: "Jost", sans-serif; font-weight: 400; font-size: 11.5px;
+    letter-spacing: 0.09em; text-transform: uppercase; text-decoration: none;
+    color: var(--mid); transition: color 0.2s; position: relative;
+  }
+  .nav-links a::after {
+    content:""; position:absolute; bottom:-4px; left:0; right:0; height:1px;
+    background:var(--green); transform:scaleX(0); transition:transform 0.25s; transform-origin:left;
+  }
+  .nav-links a:hover, .nav-links a.active { color: var(--green); }
+  .nav-links a:hover::after, .nav-links a.active::after { transform:scaleX(1); }
+  .nav-cta {
+    background: var(--green); color: white; padding: 10px 20px;
+    font-size: 10.5px; font-weight: 500; letter-spacing: 0.1em;
+    text-transform: uppercase; text-decoration: none; transition: background 0.2s;
+  }
+  .nav-cta:hover { background: var(--green-dark); }
+  .hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; background: none; border: none; padding: 4px; }
+  .hamburger span { display: block; width: 24px; height: 2px; background: var(--charcoal); }
+  .mobile-menu {
+    display: none; position: fixed; top: 240px; left: 0; right: 0; bottom: 0;
+    background: white; z-index: 999; padding: 36px; flex-direction: column; gap: 2px; overflow-y: auto;
+  }
+  .mobile-menu.open { display: flex; }
+  .mobile-menu a { font-size: 16px; color: var(--charcoal); text-decoration: none; padding: 13px 0; border-bottom: 1px solid var(--border); }
+  .btn-primary {
+    background: var(--green); color: white; padding: 15px 38px;
+    font-size: 11px; font-weight: 500; letter-spacing: 0.12em; text-transform: uppercase;
+    text-decoration: none; transition: all 0.25s; display: inline-block; border: none; cursor: pointer;
+  }
+  .btn-primary:hover { background: var(--green-dark); transform: translateY(-2px); box-shadow: 0 8px 24px rgba(122,155,63,0.35); }
+  .btn-outline-g {
+    border: 1px solid var(--green); color: var(--green); padding: 13px 34px;
+    font-size: 11px; font-weight: 500; letter-spacing: 0.12em; text-transform: uppercase;
+    text-decoration: none; transition: all 0.25s; display: inline-block; background: transparent;
+  }
+  .btn-outline-g:hover { background: var(--green); color: white !important; }
+  .btn-green-static:hover { background: #7a9b3f !important; color: white !important; transform: none !important; box-shadow: none !important; }
+  .btn-white { background: white; color: var(--green); padding: 16px 40px; font-size: 11px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; text-decoration: none; display: inline-block; transition: all 0.25s; white-space: nowrap; }
+  .btn-white:hover { background: var(--off-white); transform: translateY(-2px); }
+  section { padding: 96px 60px; }
+  .section-inner { max-width: 1200px; margin: 0 auto; }
+  .section-tag {
+    font-size: 10px; font-weight: 500; letter-spacing: 0.32em; text-transform: uppercase;
+    color: var(--green); margin-bottom: 14px; display: flex; align-items: center; gap: 14px;
+  }
+  .section-tag::before { content: ""; width: 32px; height: 1px; background: var(--green); flex-shrink: 0; }
+  .section-title { font-family: "Cormorant Garamond", serif; font-size: clamp(36px,4.5vw,58px); font-weight: 300; line-height: 1.05; color: var(--charcoal); }
+  .section-title em { font-style: italic; color: var(--green); }
+  .fade-up { opacity: 0; transform: translate3d(0, 34px, 0) scale(0.992); filter: blur(10px); transition: opacity 0.85s cubic-bezier(0.22, 1, 0.36, 1), transform 0.85s cubic-bezier(0.22, 1, 0.36, 1), filter 0.85s cubic-bezier(0.22, 1, 0.36, 1); will-change: opacity, transform, filter; }
+  .fade-up.visible { opacity: 1; transform: translate3d(0, 0, 0) scale(1); filter: blur(0); }
+  .fx-float { opacity: 0; transform: translate3d(0, 42px, 0); transition: opacity 0.9s cubic-bezier(0.22, 1, 0.36, 1), transform 0.9s cubic-bezier(0.22, 1, 0.36, 1); will-change: opacity, transform; }
+  .fx-float.visible { opacity: 1; transform: translate3d(0, 0, 0); }
+  .fx-blur { opacity: 0; filter: blur(14px); transition: opacity 0.8s ease, filter 0.8s ease; will-change: opacity, filter; }
+  .fx-blur.visible { opacity: 1; filter: blur(0); }
+  .d1 { transition-delay: 0.1s; } .d2 { transition-delay: 0.2s; } .d3 { transition-delay: 0.3s; }
+  /* Page hero */
+  .page-hero { padding-top: 80px; min-height: 440px; position: relative; display: flex; align-items: flex-end; overflow: hidden; }
+  .page-hero-bg { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: center; background-size: cover; background-position: center; }
+  .page-hero-overlay { position: absolute; inset: 0; background: linear-gradient(110deg, rgba(5,15,2,0.83) 0%, rgba(15,25,8,0.65) 50%, rgba(0,0,0,0.38) 100%); }
+  .page-hero-content { position: relative; z-index: 2; padding: 60px 60px 72px; max-width: 900px; color: white; }
+  .page-hero-eyebrow { font-size: 10px; font-weight: 500; letter-spacing: 0.32em; text-transform: uppercase; color: var(--green-light); margin-bottom: 18px; display: flex; align-items: center; gap: 14px; }
+  .page-hero-eyebrow::before { content:""; width:32px; height:1px; background:var(--green-light); }
+  .page-hero-title { font-family: "Cormorant Garamond", serif; font-size: clamp(46px,6.5vw,88px); font-weight: 300; line-height: 0.96; }
+  .page-hero-sub { font-size: 16px; font-weight: 300; color: rgba(255,255,255,0.7); margin-top: 18px; }
+  .page-hero-divider { width: 54px; height: 1px; background: var(--green-light); margin: 24px 0; }
+  /* content */
+  .content-wrap { max-width: 1200px; margin: 0 auto; }
+  .content-text p { font-size: 16px; line-height: 1.87; color: var(--mid); font-weight: 300; margin-bottom: 18px; }
+  .content-text h3 { font-family: "Cormorant Garamond", serif; font-size: 30px; font-weight: 400; color: var(--charcoal); margin: 24px 0 8px; }
+  .content-text ul { padding-left: 0; list-style: none; display: flex; flex-direction: column; gap: 8px; }
+  .content-text ul li { font-size: 15px; color: var(--mid); font-weight: 300; padding-left: 22px; position: relative; line-height: 1.6; }
+  .content-text ul li::before { content:"—"; position:absolute; left:0; color:var(--green); }
+  .img-frame { position: relative; }
+  .img-frame::before { content:""; position:absolute; top:-16px; left:-16px; right:16px; bottom:16px; border:1px solid var(--green); z-index:0; pointer-events:none; }
+  .img-frame img { position:relative; z-index:1; width:100%; display:block; }
+  /* koop */
+  .koop-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 28px; margin-top: 28px; }
+  .koop-card img { width:100%; aspect-ratio:1; object-fit:cover; object-position:top; display:block; margin-bottom:14px; }
+  .koop-card h4 { font-family:"Cormorant Garamond",serif; font-size:20px; font-weight:500; margin-bottom:6px; }
+  .koop-card p { font-size:13px; color:var(--light); line-height:1.65; font-weight:300; }
+  /* cta block */
+  .cta-block { background: var(--green); padding: 72px 60px; }
+  .cta-block-inner { max-width: 1200px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; gap: 40px; flex-wrap: wrap; }
+  .cta-block .st { color: rgba(255,255,255,0.6); font-size:10px; font-weight:500; letter-spacing:0.32em; text-transform:uppercase; display:flex; align-items:center; gap:14px; margin-bottom:14px; }
+  .cta-block .st::before { content:""; width:32px; height:1px; background:rgba(255,255,255,0.4); }
+  .cta-block .ttl { font-family:"Cormorant Garamond",serif; font-size:clamp(28px,3.6vw,44px); font-weight:300; line-height:1.05; color:white; white-space:nowrap; }
+  .cta-block .ttl em { font-style:italic; color:rgba(255,255,255,0.8); }
+  .cta-block p { color:rgba(255,255,255,0.75); font-size:15px; font-weight:300; max-width:440px; margin-top:10px; }
+  /* footer */
+  footer { background: #111; color: rgba(255,255,255,0.5); padding: 64px 60px 40px; }
+  .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 60px; max-width: 1200px; margin: 0 auto; padding-bottom: 44px; border-bottom: 1px solid rgba(255,255,255,0.07); }
+  .footer-brand { display: flex; flex-direction: column; align-items: flex-start; }
+  .footer-brand img { height: 64px; margin-bottom: 18px; margin-left: 0; background: transparent; padding: 0; object-fit: contain; display: block; }
+  .footer-brand p { font-size: 13px; line-height: 1.75; font-weight: 300; margin: 0; }
+  .footer-col h4 { font-size: 9.5px; letter-spacing: 0.25em; text-transform: uppercase; color: rgba(255,255,255,0.28); margin-bottom: 18px; }
+  .footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 11px; }
+  .footer-col a { font-size: 13px; color: rgba(255,255,255,0.5); text-decoration: none; transition: color 0.2s; font-weight: 300; }
+  .footer-col a:hover { color: var(--green-light); }
+  .footer-bottom { max-width: 1200px; margin: 0 auto; padding-top: 30px; display: flex; justify-content: space-between; align-items: center; font-size: 12px; }
+  .footer-bottom a { color: rgba(255,255,255,0.38); text-decoration: none; margin-left: 24px; }
+  .footer-bottom a:hover { color: var(--green-light); }
+  @media (max-width: 1024px) {
+    nav { padding: 0 32px; height: 80px; } section { padding: 80px 32px; } .mobile-menu { top: 80px; }
+    .page-hero-content { padding: 50px 32px 60px; }
+    .two-col-grid { grid-template-columns: 1fr !important; gap: 50px !important; }
+    .koop-grid { grid-template-columns: 1fr 1fr; }
+    .footer-grid { grid-template-columns: 1fr 1fr; gap: 40px; }
+    .cta-block { padding: 56px 32px; }
+  }
+  @media (max-width: 768px) {
+    nav { padding: 0 20px; height: 70px; } .mobile-menu { top: 70px; } .nav-links, .nav-cta { display: none; } .hamburger { display: flex; }
+    section { padding: 64px 20px; } .page-hero-content { padding: 40px 20px 52px; }
+    .koop-grid { grid-template-columns: 1fr; } .footer-grid { grid-template-columns: 1fr; gap: 32px; }
+    .footer-bottom { flex-direction: column; gap: 14px; text-align: center; }
+    .cta-block { padding: 48px 20px; } .cta-block-inner { flex-direction: column; gap: 28px; }
+    .img-frame::before { display: none; }
+  }
+</style></head><body>
+<nav id="mainNav"><div class="nav-logo"><a href="index.html"><img src="logo-header-85.png" alt="Bianca Jansen"></a></div><ul class="nav-links"><li><a href="index.html">Startseite</a></li><li><a href="rain-jansen.html">RAin Jansen</a></li><li><a href="medizinrecht.html">Medizinrecht</a></li><li><a href="versicherungsrecht.html" class=active>Versicherungsrecht</a></li><li><a href="pferderecht.html">Pferderecht</a></li><li><a href="zivilrecht.html">Zivilrecht</a></li><li><a href="index.html#kontakt">Kontakt</a></li></ul><a class="nav-cta" href="index.html#kontakt">Erstgespräch</a><button class="hamburger" onclick="toggleMobile()"><span></span><span></span><span></span></button></nav>
+<div class="mobile-menu" id="mobileMenu"><a href="index.html" onclick="closeMobile()">Startseite</a><a href="rain-jansen.html" onclick="closeMobile()">RAin Jansen</a><a href="medizinrecht.html" onclick="closeMobile()">Medizinrecht</a><a href="versicherungsrecht.html" onclick="closeMobile()">Versicherungsrecht</a><a href="pferderecht.html" onclick="closeMobile()">Pferderecht</a><a href="zivilrecht.html" onclick="closeMobile()">Zivilrecht</a><a href="index.html#kontakt" onclick="closeMobile()">Kontakt</a></div>
+
+<div class="page-hero"><video class="page-hero-bg" autoplay muted loop playsinline><source src="hero-96.mp4" type="video/mp4"></video><div class="page-hero-overlay"></div><div class="page-hero-content"><div class="page-hero-eyebrow">Rechtsgebiet</div><h1 class="page-hero-title">Versicherungs<em style='color:#a8c46a;'>recht</em></h1><div class="page-hero-divider"></div><p class="page-hero-sub">Durchsetzung von Versicherungsansprüchen – außergerichtlich und gerichtlich</p></div></div>
+<section style="background:white;">
+  <div class="section-inner">
+    <div style="display:grid;grid-template-columns:1.5fr 1fr;gap:80px;" class="two-col-grid">
+      <div class="fade-up content-text">
+        <div class="section-tag">Expertise</div>
+        <h2 class="section-title" style="margin-bottom:28px;">Versicherungsrecht &amp; <em>Anspruchsdurchsetzung</em></h2>
+        <p>Im Versicherungsrecht verfügt Rechtsanwältin Jansen über langjährige Expertise. Sie berät und vertritt Mandanten bei streitigen Versicherungsverhältnissen, unterstützt bei der Durchsetzung berechtigter Ansprüche und begleitet sie in Auseinandersetzungen mit Versicherungsgesellschaften – außergerichtlich und vor Gericht.</p>
+        <p>Aktuell vertieft Frau Jansen ihre Expertise durch einen berufsbegleitenden Weiterbildungsstudiengang im Versicherungsrecht an der Westfälischen Wilhelms-Universität Münster – ein weiterer Beleg für ihren kontinuierlichen Einsatz für höchste fachliche Qualität.</p>
+        <p>Gerade im Zusammenspiel mit dem Medizinrecht und dem Pferderecht ist das Versicherungsrecht häufig von zentraler Bedeutung: Haftpflichtversicherer der Behandler, OP-Versicherungen für Pferde oder Tierhalterhaftpflichtversicherungen sind typische Schnittstellen, in denen Frau Jansen kompetenzübergreifend berät.</p>
+        <h3>Leistungsschwerpunkte</h3>
+        <ul>
+          <li>Haftpflichtversicherung (insb. bei Arzthaftungsfällen)</li>
+          <li>OP-Versicherungen (insbesondere für Pferde)</li>
+          <li>Tierhalterhaftpflichtversicherung</li>
+          <li>Streitige Versicherungsverhältnisse</li>
+          <li>Ablehnung von Versicherungsleistungen</li>
+          <li>Außergerichtliche Verhandlung mit Versicherungsgesellschaften</li>
+          <li>Gerichtliche Durchsetzung von Versicherungsansprüchen</li>
+          <li>Prüfung von Versicherungsbedingungen &amp; -verträgen</li>
+        </ul>
+      </div>
+      <div class="fade-up d1" style="display:flex;flex-direction:column;gap:3px;">
+        <img src="c-3.png" alt="Versicherungsrecht" style="width:100%;aspect-ratio:4/3;object-fit:cover;display:block;" onerror="this.style.background='#e8f0d8'">
+        <img src="c-4.png" alt="Versicherung Recht" style="width:100%;aspect-ratio:4/3;object-fit:cover;display:block;" onerror="this.style.background='#d4e5b5'">
+        <div style="background:#e8f0d8;padding:28px;border-top:3px solid #7a9b3f;">
+          <p style="font-family:'Cormorant Garamond',serif;font-size:18px;font-style:italic;color:#1a1a1a;line-height:1.55;">"Versicherungen sind Schutzversprechen – ich helfe dabei, diese Versprechen durchzusetzen."</p>
+          <p style="font-size:12px;color:#7a9b3f;margin-top:12px;font-weight:500;letter-spacing:0.08em;">— Bianca Jansen, LL.M.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<div class="cta-block"><div class="cta-block-inner"><div><div class="st">Kostenlos &amp; unverbindlich</div><div class="ttl">Erstgespräch <em>vereinbaren</em></div><p>Schildern Sie uns Ihr Anliegen – wir beraten Sie zu den nächsten Schritten. Deutschlandweit.</p></div><a href="index.html#kontakt" class="btn-white">Jetzt Kontakt aufnehmen</a></div></div><footer>
+  <div class="footer-grid">
+    <div class="footer-brand"><a href="index.html"><img src="logo-footer-86.png" alt="Bianca Jansen"></a><p>Fachanwaltskanzlei für Medizinrecht in Düsseldorf &amp; Moers. Kompetente, persönliche Beratung deutschlandweit.</p></div>
+    <div class="footer-col"><h4>Rechtsgebiete</h4><ul><li><a href="medizinrecht.html">Medizinrecht</a></li><li><a href="versicherungsrecht.html">Versicherungsrecht</a></li><li><a href="pferderecht.html">Pferderecht &amp; Tierrecht</a></li><li><a href="zivilrecht.html">Zivilrecht</a></li></ul></div>
+    <div class="footer-col"><h4>Kanzlei</h4><ul><li><a href="rain-jansen.html">RAin Bianca Jansen</a></li><li><a href="index.html#team">Team</a></li><li><a href="index.html#standorte">Standorte</a></li><li><a href="index.html#kontakt">Kontakt</a></li><li><a href="https://www.instagram.com/biancapatriciajansen/" target="_blank">Instagram</a></li></ul></div>
+  </div>
+  <div class="footer-bottom"><span>© 2025 Rechtsanwältin Bianca Jansen, LL.M. (Medizinrecht)</span><div><a href="#">Impressum</a><a href="#">Datenschutz</a></div></div>
+</footer><script>window.addEventListener("scroll",()=>{document.getElementById("mainNav").classList.toggle("scrolled",window.scrollY>40)});function toggleMobile(){document.getElementById("mobileMenu").classList.toggle("open")}function closeMobile(){document.getElementById("mobileMenu").classList.remove("open")}const obs=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add("visible");obs.unobserve(e.target)}});},{threshold:0.08});document.querySelectorAll(".fade-up,.fx-float,.fx-blur").forEach((el,i)=>{if(!el.classList.contains("d1")&&!el.classList.contains("d2")&&!el.classList.contains("d3")){el.style.transitionDelay=(Math.min((i%8)*0.06,0.36))+"s"}obs.observe(el)});</script></body></html>
